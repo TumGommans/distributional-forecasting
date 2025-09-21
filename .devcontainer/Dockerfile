@@ -1,14 +1,16 @@
-FROM python:3.9-slim
+# Change this line from python:3.9 to python:3.10
+FROM python:3.10-slim
 
 # avoid interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONDONTWRITEBYTECODE=1
 
-# Install OS deps for matplotlib & torch
+# Install OS deps for matplotlib, torch, and building packages
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       build-essential \
-      libgl1-mesa-glx \
+      python3-dev \
+      libgl1 \
       libglib2.0-0 && \
     rm -rf /var/lib/apt/lists/*
 

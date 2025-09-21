@@ -7,3 +7,4 @@ networkx
 scipy
 pandas
 scikit-learn
+scoringrules
