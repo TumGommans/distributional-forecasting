@@ -1,2 +1,2 @@
 # distributional-forecasting
-Source code for our Machine Learning assignment
+Code for our Machine Learning in Econometrics assignment

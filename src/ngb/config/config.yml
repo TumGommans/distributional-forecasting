@@ -1,0 +1,38 @@
+gender_mapping:
+  Male: 1
+  Female: 0
+education_mapping:
+  Less Than High School: 0
+  High School: 1
+  Junior College: 2
+  Bachelor: 3
+  Graduate: 4
+all_cat_cols:
+  - occrecode
+  - wrkstat
+  - maritalcat
+  - gender
+window_length: 15
+hyperparam_space:
+  n_estimators:
+    type: quniform
+    args:
+      low: 100
+      high: 1000
+      q: 100
+  learning_rate:
+    type: loguniform
+    args:
+      low: 0.01
+      high: 0.2
+  minibatch_frac:
+    type: uniform
+    args:
+      low: 0.5
+      high: 1.0
+  col_sample:
+    type: uniform
+    args:
+      low: 0.5
+      high: 1.0
+max_evals: 50

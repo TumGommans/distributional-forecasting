@@ -8,3 +8,5 @@ scipy
 pandas
 scikit-learn
 scoringrules
+quantile-forest
+ngboost

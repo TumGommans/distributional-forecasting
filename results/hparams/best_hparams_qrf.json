@@ -1,0 +1,7 @@
+{
+    "max_depth": 46,
+    "min_samples_leaf": 5,
+    "min_samples_split": 20,
+    "n_estimators": 600,
+    "best_loss": 8343.505335816591
+}
