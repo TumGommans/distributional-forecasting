@@ -42,4 +42,4 @@ max_evals: 50
 quantiles_to_predict:
   low: 0.01
   high: 0.99
-  nr: 99
+  nr: 200

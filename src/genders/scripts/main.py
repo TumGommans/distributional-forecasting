@@ -28,7 +28,6 @@ df_2010 = pd.DataFrame(
 df_x = pd.read_csv("data/X_trn.csv")
 df_y = pd.read_csv("data/y_trn.csv")
 df = pd.concat([df_y, df_x], axis=1)
-df = df.sort_values(by='year').reset_index(drop=True)
 
 X = df[['year', 'gender']]
 X['gender'] = X['gender'].map(
@@ -39,8 +38,8 @@ X['gender'] = X['gender'].map(
 )
 y = df['realrinc']
 
-results_ngb = load_json(path="/workspace/results/best_hparams_ngb.json")
-results_qrf = load_json(path="/workspace/results/best_hparams_qrf.json")
+results_ngb = load_json(path="/workspace/results/hparams/best_hparams_ngb.json")
+results_qrf = load_json(path="/workspace/results/hparams/best_hparams_qrf.json")
 
 if results_ngb['best_loss'] <= results_qrf['best_loss']:
     

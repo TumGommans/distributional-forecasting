@@ -19,16 +19,11 @@ hparams = load_json(path="/workspace/results/hparams/best_hparams_ngb.json")
 df_x = pd.read_csv("data/X_trn.csv")
 df_y = pd.read_csv("data/y_trn.csv")
 df = pd.concat([df_y, df_x], axis=1)
-df = df.sort_values(by='year').reset_index(drop=True)
 
 df_x_test = pd.read_csv("data/X_test.csv")
 
 df['educcat'] = df['educcat'].map(cfg['education_mapping'])
 df_x_test['educcat'] = df_x_test['educcat'].map(cfg['education_mapping'])
-
-latest_year = df['year'].max()
-cutoff_year = latest_year - cfg['window_length']
-df = df[df['year'] > cutoff_year]
 
 X = df.drop('realrinc', axis=1)
 y = df['realrinc']
@@ -60,4 +55,8 @@ forecasts = np.random.lognormal(
     size=(1000, X_test_eng.shape[0])
 ).T
 
+print(f"\n Forecasts have shape: {forecasts.shape}")
+
 np.save("results/predictions/predictions.npy", forecasts)
+
+print("\n Results successfully saved!")

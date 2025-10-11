@@ -8,7 +8,7 @@ import numpy as np
 import scoringrules as sr
 
 from typing import Any
-from sklearn.model_selection import TimeSeriesSplit
+from sklearn.model_selection import KFold
 from quantile_forest import RandomForestQuantileRegressor
 from hyperopt import fmin, tpe, STATUS_OK, Trials
 
@@ -31,15 +31,10 @@ QUANTILES = np.linspace(
 df_x = pd.read_csv("data/X_trn.csv")
 df_y = pd.read_csv("data/y_trn.csv")
 df = pd.concat([df_y, df_x], axis=1)
-df = df.sort_values(by='year').reset_index(drop=True)
 
 df['educcat'] = df['educcat'].map(cfg['education_mapping'])
 X = df.drop('realrinc', axis=1)
 y = df['realrinc']
-
-latest_year = df['year'].max()
-cutoff_year = latest_year - cfg['window_length']
-ROLLING_WINDOW_SIZE = df[df['year'] > cutoff_year].shape[0]
 
 def objective(params: dict) -> dict[str, Any]:
     """Objective function for Hyperopt to minimize.
@@ -56,10 +51,10 @@ def objective(params: dict) -> dict[str, Any]:
     params['min_samples_split'] = int(params['min_samples_split'])
 
     n_folds = 5
-    tscv = TimeSeriesSplit(n_splits=n_folds, max_train_size=ROLLING_WINDOW_SIZE)
+    kfold = KFold(n_splits=n_folds, shuffle=True, random_state=42)
     crps_scores = []
 
-    for fold_num, (train_index, val_index) in enumerate(tscv.split(X)):
+    for fold_num, (train_index, val_index) in enumerate(kfold.split(X)):
         print(f'Starting fold {fold_num + 1}/{n_folds}')
         X_train, X_val = X.iloc[train_index], X.iloc[val_index]
         y_train, y_val = y.iloc[train_index], y.iloc[val_index]

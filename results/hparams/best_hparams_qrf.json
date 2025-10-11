@@ -1,7 +1,7 @@
 {
-    "max_depth": 46,
+    "max_depth": 34,
     "min_samples_leaf": 5,
-    "min_samples_split": 20,
+    "min_samples_split": 10,
     "n_estimators": 600,
-    "best_loss": 8343.505335816591
+    "best_loss": 7781.961381767173
 }

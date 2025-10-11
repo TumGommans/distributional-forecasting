@@ -1,7 +1,9 @@
 {
-    "col_sample": 0.5492375411757853,
-    "learning_rate": 0.01951736415761773,
-    "minibatch_frac": 0.6540409901548111,
-    "n_estimators": 1000,
-    "best_loss": 8229.938601517624
+    "col_sample": 0.8839281988826879,
+    "learning_rate": 0.07045898968498444,
+    "max_depth": 7,
+    "minibatch_frac": 0.8100594988383205,
+    "n_estimators": 800,
+    "best_cv_loss": 8506.96192219776,
+    "oos_crps": 8553.709864717772
 }
